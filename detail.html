@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체험단 상세페이지</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/logo.png" alt="빌리언 체험단">
+        </a>
+    </div>
+
+    <nav>
+        <a href="index.html">홈</a>
+        <a href="campaign.html">체험단</a>
+        <a href="#">기자단</a>
+        <a href="notice.html">공지사항</a>
+        <a href="partner-campaign.html">업체등록</a>
+    </nav>
+
+    <div class="header-search">
+        <input type="text" placeholder="체험단 검색">
+    </div>
+
+    <div class="header-user">
+        <a href="login.html">로그인</a>
+        <a href="signup.html" class="join-btn">회원가입</a>
+    </div>
+</header>
+
+<section class="detail">
+    <img id="detailImage" src="">
+
+<div class="detail-content">
+    <span class="badge" id="detailCategory"></span>
+
+    <h2 id="detailTitle"></h2>
+    <p class="detail-desc" id="detailDescription"></p>
+
+    <div class="detail-info">
+        <div>
+            <strong>제공 내역</strong>
+            <p>베타 테스트 중</p>
+        </div>
+
+        <div>
+            <strong>모집 인원</strong>
+            <p>10명</p>
+        </div>
+
+        <div>
+            <strong>모집 기간</strong>
+            <p>2026.06.09 ~ 2026.06.20</p>
+        </div>
+
+        <div>
+            <strong>리뷰 채널</strong>
+            <p>블로그</p>
+        </div>
+    </div>
+
+    <h3>리뷰 미션</h3>
+    <ul class="mission-list">
+        <li>방문 후 7일 이내 리뷰 작성</li>
+        <li>사진 15장 이상, 영상 1개 이상 첨부</li>
+        <li>제공받은 메뉴와 매장 분위기 소개, 키워드 작성</li>
+    </ul>
+
+    <a href="#" class="apply-btn" onclick="alert('현재 베타 점검 중입니다. 실제 체험단 모집은 순차적으로 오픈될 예정입니다.'); return false;">
+    테스트 사전 신청
+</a>
+</div>
+</section>
+<script>
+const params = new URLSearchParams(window.location.search);
+const index = params.get("index");
+
+const campaigns = JSON.parse(localStorage.getItem("campaigns")) || [];
+
+if (campaigns[index]) {
+    const campaign = campaigns[index];
+
+    document.getElementById("detailTitle").textContent = campaign.title;
+    document.getElementById("detailDescription").textContent = campaign.description;
+    document.getElementById("detailCategory").textContent = campaign.category;
+
+    if (campaign.image) {
+        document.getElementById("detailImage").src = campaign.image;
+    }
+}
+</script>
+</body>
+</html>

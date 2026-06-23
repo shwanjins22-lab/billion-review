@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>공지사항</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/logo.png" alt="빌리언 체험단">
+        </a>
+    </div>
+</header>
+
+<section class="notice-box">
+    <h2 id="noticeTitle">공지사항</h2>
+
+    <div id="noticeContent">
+        내용이 표시됩니다.
+    </div>
+
+    <br>
+
+    <a href="notice.html">목록으로</a>
+</section>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const type = params.get("type");
+
+const notices = {
+    open: {
+        title: "빌리언 체험단 베타 서비스 오픈 안내",
+        content: "빌리언 체험단이 베타 서비스를 시작합니다."
+    },
+
+    guide: {
+        title: "체험단 신청 전 필수 확인사항",
+        content: "신청 전 블로그 및 SNS 운영 여부를 확인해주세요."
+    },
+
+    review: {
+        title: "리뷰 작성 가이드 안내",
+        content: "체험 후 7일 이내 리뷰 작성이 필요합니다."
+    },
+
+    select: {
+        title: "선정 기준 및 발표 안내",
+        content: "채널 품질, 활동성, 신청 사유 등을 종합 검토합니다."
+    }
+};
+
+if(notices[type]){
+    document.getElementById("noticeTitle").innerText = notices[type].title;
+    document.getElementById("noticeContent").innerText = notices[type].content;
+}
+
+</script>
+
+</body>
+</html>

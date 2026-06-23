@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 대시보드 - 빌리언 체험단</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/logo.png" alt="빌리언 체험단">
+        </a>
+    </div>
+
+    <nav>
+        <a href="index.html">홈</a>
+        <a href="campaign.html">체험단</a>
+        <a href="#">기자단</a>
+        <a href="notice.html">공지사항</a>
+        <a href="partner-campaign.html">업체등록</a>
+    </nav>
+
+    <div class="header-search">
+        <input type="text" placeholder="체험단 검색">
+    </div>
+
+    <div class="header-user">
+        <a href="login.html">로그인</a>
+        <a href="signup.html" class="join-btn">회원가입</a>
+    </div>
+</header>
+
+<section class="admin-list-box">
+    <h2>관리자 대시보드</h2>
+    <p>빌리언 체험단 운영 현황을 한눈에 확인하세요.</p>
+
+    <div class="admin-dashboard">
+        <div class="dashboard-card">
+            <h3 id="memberCount">0</h3>
+            <p>전체 회원</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3 id="campaignCount">0</h3>
+            <p>진행중 캠페인</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3 id="partnerCampaignCount">0</h3>
+            <p>승인 대기</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3 id="applicationCount">0</h3>
+            <p>누적 신청</p>
+        </div>
+    </div>
+</section>
+<script>
+window.onload = function () {
+  const campaigns = JSON.parse(localStorage.getItem("campaigns")) || [];
+  const applications = JSON.parse(localStorage.getItem("applications")) || [];
+  const partnerCampaigns = JSON.parse(localStorage.getItem("partnerCampaigns")) || [];
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  document.getElementById("memberCount").textContent = users.length;
+  document.getElementById("campaignCount").textContent = campaigns.length;
+  document.getElementById("partnerCampaignCount").textContent = partnerCampaigns.length;
+  document.getElementById("applicationCount").textContent = applications.length;
+};
+</script>
+</body>
+</html>

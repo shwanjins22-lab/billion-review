@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>체험단 목록</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/logo.png" alt="빌리언 체험단">
+        </a>
+    </div>
+
+    <nav>
+        <a href="index.html">홈</a>
+        <a href="campaign.html">체험단</a>
+        <a href="#">기자단</a>
+        <a href="notice.html">공지사항</a>
+        <a href="partner-campaign.html">업체등록</a>
+    </nav>
+
+    <div class="header-search">
+        <input type="text" placeholder="체험단 검색">
+    </div>
+
+    <div class="header-user">
+        <a href="login.html">로그인</a>
+        <a href="signup.html" class="join-btn">회원가입</a>
+    </div>
+</header>
+
+<section class="campaign-page">
+
+    <h2>체험단 모집</h2>
+<div class="search-box">
+
+    <input type="text"
+           id="searchInput"
+           placeholder="체험단 검색">
+
+    <button onclick="searchCampaign()">
+        검색
+    </button>
+
+</div>
+<div class="category-menu">
+    <button onclick="filterCampaign('전체')">전체</button>
+    <button onclick="filterCampaign('맛집')">맛집</button>
+    <button onclick="filterCampaign('카페')">카페</button>
+    <button onclick="filterCampaign('숙박')">숙박</button>
+    <button onclick="filterCampaign('뷰티')">뷰티</button>
+    <button onclick="filterCampaign('제품')">제품</button>
+    
+</div>
+<div class="status-menu">
+    <button onclick="filterStatus('전체')">전체</button>
+    <button onclick="filterStatus('모집중')">모집중</button>
+    <button onclick="filterStatus('마감임박')">마감임박</button>
+    <button onclick="filterStatus('선정발표')">선정발표</button>
+    <button onclick="filterStatus('종료')">종료</button>
+</div>
+    <div class="card-wrap" id="campaignList">
+
+</div>
+
+    </div>
+
+</section>
+
+<script>
+window.onload = function () {
+  const campaignList = document.getElementById("campaignList");
+  const campaigns = JSON.parse(localStorage.getItem("campaigns")) || [];
+
+  campaignList.innerHTML = "";
+
+  campaigns.forEach(function (campaign, index) {
+    const card = document.createElement("div");
+    card.className = "campaign-card";
+
+    card.innerHTML = `
+      <h3>${campaign.title}</h3>
+      <p>카테고리: ${campaign.category}</p>
+      <p>모집인원: ${campaign.people}</p>
+      <p>${campaign.description}</p>
+      <a href="detail.html?index=${index}">자세히 보기</a>
+    `;
+
+    campaignList.appendChild(card);
+  });
+};
+</script>
+</body>
+</html>

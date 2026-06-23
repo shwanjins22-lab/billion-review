@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신청자 관리 - 빌리언 체험단</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/logo.png" alt="빌리언 체험단">
+        </a>
+    </div>
+
+    <nav>
+        <a href="index.html">홈</a>
+        <a href="campaign.html">체험단</a>
+        <a href="#">기자단</a>
+        <a href="notice.html">공지사항</a>
+        <a href="partner-campaign.html">업체등록</a>
+    </nav>
+
+    <div class="header-search">
+        <input type="text" placeholder="체험단 검색">
+    </div>
+
+    <div class="header-user">
+        <a href="login.html">로그인</a>
+        <a href="signup.html" class="join-btn">회원가입</a>
+    </div>
+</header>
+
+<section class="admin-list-box">
+    <h2>신청자 관리</h2>
+    <p>체험단 신청자 목록을 확인하고 선정 상태를 관리하세요.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>캠페인</th>
+                <th>채널</th>
+                <th>상태</th>
+                <th>관리</th>
+            </tr>
+        </thead>
+
+        <tbody id="applicantList">
+        </tbody>
+    </table>
+</section>
+<script>
+window.onload = function () {
+  renderApplicants();
+};
+
+function renderApplicants() {
+  const applicantList = document.getElementById("applicantList");
+  const applications = JSON.parse(localStorage.getItem("applications")) || [];
+
+  applicantList.innerHTML = "";
+
+  applications.forEach(function (applicant, index) {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${applicant.name}</td>
+      <td>신청 체험단</td>
+      <td><a href="${applicant.url}" target="_blank">채널 보기</a></td>
+      <td>${applicant.status || "신청완료"}</td>
+      <td><button onclick="selectApplicant(${index})">선정</button></td>
+    `;
+
+    applicantList.appendChild(row);
+  });
+}
+
+function selectApplicant(index) {
+  const applications = JSON.parse(localStorage.getItem("applications")) || [];
+  applications[index].status = "선정완료";
+  localStorage.setItem("applications", JSON.stringify(applications));
+
+  alert("선정 처리되었습니다.");
+  renderApplicants();
+}
+</script>
+</body>
+</html>

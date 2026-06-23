@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체험단 신청 - 빌리언 체험단</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/logo.png" alt="빌리언 체험단">
+        </a>
+    </div>
+
+    <nav>
+        <a href="index.html">홈</a>
+        <a href="campaign.html">체험단</a>
+        <a href="#">기자단</a>
+        <a href="notice.html">공지사항</a>
+        <a href="partner-campaign.html">업체등록</a>
+    </nav>
+
+    <div class="header-search">
+        <input type="text" placeholder="체험단 검색">
+    </div>
+
+    <div class="header-user">
+        <a href="login.html">로그인</a>
+        <a href="signup.html" class="join-btn">회원가입</a>
+    </div>
+</header>
+
+<section class="apply-box">
+    <h2>체험단 신청하기</h2>
+    <p>아래 정보를 입력하고 체험단에 신청해보세요.</p>
+
+    <form>
+        <input type="text" id="applicantName" placeholder="이름">
+        <input type="tel" id="applicantPhone" placeholder="연락처">
+        <input type="email" id="applicantEmail" placeholder="이메일">
+        <input type="url" id="applicantUrl" placeholder="블로그 또는 인스타그램 URL">
+        <textarea id="applicantReason" placeholder="신청 이유를 간단히 작성해주세요."></textarea>
+
+        <button type="button" class="apply-btn" onclick="submitApplication()">신청 완료</button>
+    </form>
+</section>
+<script>
+function submitApplication() {
+  const name = document.getElementById("applicantName").value;
+  const phone = document.getElementById("applicantPhone").value;
+  const email = document.getElementById("applicantEmail").value;
+  const url = document.getElementById("applicantUrl").value;
+  const reason = document.getElementById("applicantReason").value;
+
+  if (!name || !phone || !email || !url || !reason) {
+    alert("모든 항목을 입력해주세요.");
+    return;
+  }
+
+  const application = {
+    name: name,
+    phone: phone,
+    email: email,
+    url: url,
+    reason: reason,
+    createdAt: new Date().toLocaleString()
+  };
+
+  let applications = JSON.parse(localStorage.getItem("applications")) || [];
+  applications.push(application);
+  localStorage.setItem("applications", JSON.stringify(applications));
+
+  alert("신청이 완료되었습니다.");
+  window.location.href = "complete.html";
+}
+</script>
+</body>
+</html>

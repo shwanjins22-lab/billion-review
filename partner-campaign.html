@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캠페인 등록 - 빌리언 체험단</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/logo.png" alt="빌리언 체험단">
+        </a>
+    </div>
+
+    <nav>
+        <a href="index.html">홈</a>
+        <a href="campaign.html">체험단</a>
+        <a href="#">기자단</a>
+        <a href="notice.html">공지사항</a>
+        <a href="partner-campaign.html">업체등록</a>
+    </nav>
+
+    <div class="header-search">
+        <input type="text" placeholder="체험단 검색">
+    </div>
+
+    <div class="header-user">
+        <a href="login.html">로그인</a>
+        <a href="signup.html" class="join-btn">회원가입</a>
+    </div>
+</header>
+
+<section class="apply-box">
+    <h2>캠페인 등록</h2>
+    <p>업체에서 모집할 체험단 정보를 입력해주세요.</p>
+
+    <form>
+        <input type="text" id="campaignTitle" placeholder="캠페인 제목">
+        <input type="text" id="campaignCategory" placeholder="카테고리 예: 맛집, 숙박, 뷰티">
+        <input type="text" id="campaignBenefit" placeholder="제공 내역 예: 2인 식사권">
+        <input type="number" id="campaignPeople" placeholder="모집 인원">
+        <input type="date" id="campaignStart">
+        <input type="date" id="campaignEnd">
+
+        <textarea id="campaignMission" placeholder="리뷰 미션..."></textarea>
+        <textarea id="campaignRequest" placeholder="업체 요청사항..."></textarea>
+
+        <button type="button" onclick="submitPartnerCampaign()">
+    </form>
+</section>
+<script>
+function submitPartnerCampaign() {
+
+  const campaign = {
+    title: document.getElementById("campaignTitle").value,
+    category: document.getElementById("campaignCategory").value,
+    benefit: document.getElementById("campaignBenefit").value,
+    people: document.getElementById("campaignPeople").value,
+    start: document.getElementById("campaignStart").value,
+    end: document.getElementById("campaignEnd").value,
+    mission: document.getElementById("campaignMission").value,
+    request: document.getElementById("campaignRequest").value
+  };
+
+  let partnerCampaigns =
+    JSON.parse(localStorage.getItem("partnerCampaigns")) || [];
+
+  partnerCampaigns.push(campaign);
+
+  localStorage.setItem(
+    "partnerCampaigns",
+    JSON.stringify(partnerCampaigns)
+  );
+
+  alert("캠페인 등록 신청이 완료되었습니다.");
+}
+</script>
+</body>
+</html>

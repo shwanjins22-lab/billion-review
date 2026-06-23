@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>관리자 페이지</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/logo.png" alt="빌리언 체험단">
+        </a>
+    </div>
+
+    <nav>
+        <a href="index.html">홈</a>
+        <a href="campaign.html">체험단</a>
+        <a href="#">기자단</a>
+        <a href="notice.html">공지사항</a>
+        <a href="partner-campaign.html">업체등록</a>
+    </nav>
+
+    <div class="header-search">
+        <input type="text" placeholder="체험단 검색">
+    </div>
+
+    <div class="header-user">
+        <a href="login.html">로그인</a>
+        <a href="signup.html" class="join-btn">회원가입</a>
+    </div>
+</header>
+
+<section class="admin-box">
+
+    <h2>체험단 등록</h2>
+
+    <input type="text" id="title" placeholder="체험단 제목">
+
+    <input type="text" id="category" placeholder="카테고리">
+
+    <input type="text" id="people" placeholder="모집인원">
+
+    <input type="text" id="image" placeholder="이미지 경로 예: images/sample.jpg">
+
+    <textarea id="description" placeholder="상세 설명"></textarea>
+
+    <button onclick="addCampaign()">등록하기</button>
+
+</section>
+<script>
+function addCampaign() {
+  const image = document.getElementById("image").value;  
+  const title = document.getElementById("title").value;
+  const category = document.getElementById("category").value;
+  const people = document.getElementById("people").value;
+  const description = document.getElementById("description").value;
+
+  if (!title || !category || !people || !description) {
+    alert("모든 항목을 입력해주세요.");
+    return;
+  }
+
+  const campaign = {
+  title: title,
+  category: category,
+  people: people,
+  description: description,
+  image: image
+};
+
+  let campaigns = JSON.parse(localStorage.getItem("campaigns")) || [];
+  campaigns.push(campaign);
+  localStorage.setItem("campaigns", JSON.stringify(campaigns));
+
+  alert("체험단이 등록되었습니다.");
+
+  document.getElementById("title").value = "";
+  document.getElementById("category").value = "";
+  document.getElementById("people").value = "";
+  document.getElementById("description").value = "";
+}
+</script>
+
+</body>
+</html>
