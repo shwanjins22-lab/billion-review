@@ -944,3 +944,283 @@ nav a {
     padding: 12px 18px;
     border-radius: 24px;
 }
+/* 상단 신규 오픈 안내 */
+.open-notice {
+    padding: 16px 24px;
+    background: #f5f5f7;
+}
+
+.open-notice-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    border: 1px solid #e8d7b5;
+    border-radius: 16px;
+    background: #fff8eb;
+}
+
+.open-notice-inner p {
+    margin: 0;
+    color: #554326;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.open-notice-inner strong {
+    color: #9b6b18;
+}
+
+.pre-register-btn {
+    display: inline-block;
+    flex-shrink: 0;
+    padding: 11px 20px;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* 헤더: 화면이 좁아지면 다음 줄로 배치 */
+.site-header {
+    height: auto;
+    min-height: 110px;
+    padding: 20px 4%;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.site-header > * {
+    min-width: 0;
+}
+
+.site-header nav {
+    margin-top: 0;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.site-header nav a {
+    margin-right: 0;
+}
+
+.site-header .logo {
+    flex-shrink: 0;
+}
+
+.site-header .header-search {
+    margin-left: auto;
+}
+
+/* 카드 안의 내용 때문에 열이 넓어지는 현상 방지 */
+.popular .card-wrap,
+.campaigns .card-wrap,
+.review-wrap {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card,
+.review-card {
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
+/* 태블릿 및 모바일 */
+@media (max-width: 900px) {
+    .site-header {
+        position: relative;
+        min-height: 0;
+        padding: 18px 20px;
+        gap: 18px;
+    }
+
+    .site-header .logo {
+        order: 1;
+        margin-right: auto;
+    }
+
+    .site-header .header-user {
+        order: 2;
+        gap: 10px;
+    }
+
+    .site-header nav {
+        order: 3;
+        width: 100%;
+        flex-shrink: 1;
+        justify-content: center;
+        gap: 12px 20px;
+    }
+
+    .site-header .header-search {
+        order: 4;
+        width: 100%;
+        margin-left: 0;
+        flex-shrink: 1;
+    }
+
+    .popular .card-wrap,
+    .campaigns .card-wrap,
+    .review-wrap {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* 휴대폰 */
+@media (max-width: 600px) {
+    .open-notice {
+        padding: 12px 16px;
+    }
+
+    .open-notice-inner {
+        flex-direction: column;
+        gap: 12px;
+        padding: 18px 16px;
+    }
+
+    .open-notice-inner p {
+        font-size: 14px;
+    }
+
+    .open-notice-inner strong {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .site-header {
+        padding: 16px;
+    }
+
+    .site-header .logo img {
+        width: 100px;
+        height: auto;
+    }
+
+    .site-header .header-user a {
+        font-size: 13px;
+    }
+
+    .site-header .header-user .join-btn {
+        padding: 10px 12px;
+    }
+
+    .site-header nav {
+        gap: 10px 16px;
+    }
+
+    .site-header nav a {
+        font-size: 14px;
+    }
+
+    .site-header .header-search input {
+        font-size: 16px;
+    }
+
+    .hero {
+        min-height: 0;
+        padding: 48px 16px;
+    }
+
+    .hero-badge {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .hero h2 {
+        font-size: clamp(24px, 6.5vw, 34px);
+        line-height: 1.4;
+    }
+
+    .hero p {
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 26px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 12px;
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        padding: 15px 18px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 40px 16px;
+        gap: 28px 12px;
+    }
+
+    .stat-item h3 {
+        font-size: 30px;
+    }
+
+    .stat-item p {
+        font-size: 14px;
+    }
+
+    .popular,
+    .campaigns,
+    .reviews {
+        padding: 44px 16px;
+    }
+
+    .popular h2,
+    .campaigns h2,
+    .reviews h2 {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .section-desc {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
+
+    .popular .card-wrap,
+    .campaigns .card-wrap,
+    .review-wrap {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .popular .card-wrap {
+        margin-top: 24px;
+    }
+
+    .card-content {
+        padding: 22px;
+    }
+
+    .card h3 {
+        font-size: 20px;
+    }
+
+    .review-card {
+        padding: 24px;
+    }
+
+    footer {
+        padding: 36px 16px;
+        overflow-wrap: anywhere;
+    }
+
+    .footer-links {
+        gap: 12px 18px;
+    }
+
+    footer p {
+        line-height: 1.8;
+    }
+}
